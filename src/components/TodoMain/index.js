@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import TodoItem from './TodoItem'
-import './index.css'
+import './index.scss'
 
 class TodoMain extends Component {
     static propTypes = {

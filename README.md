@@ -1,7 +1,8 @@
 ## 配置sass预编译器环境
-  - npm install sass-loader node-sass --save-dev
-  - npm run eject
-  - 修改webpack.config.dev.js
+[参考链接](https://www.cnblogs.com/yangrenmu/p/7118398.html)
+  - `npm install sass-loader node-sass --save-dev`
+  - `npm run eject`
+  - 修改`webpack.config.dev.js` 和 `webpack.config.prod.js`
     ```
     {
       exclude: [
@@ -45,7 +46,7 @@
 ## 分析确定组件的state和props
   - App:
     - state: 
-      - todos: [{isDone: false, title: '吃饭'}, {isDone: false, title: '睡觉'}]
+      - todos: `[{isDone: false, title: '吃饭'}, {isDone: false, title: '睡觉'}]`
       - isAllChecked: boolean
   - TodoHeader
     - props: addTodo/func
@@ -72,7 +73,7 @@
   - 动态显示初始化todos列表数据
     - App  state--> todos
     - 初始化todos: constructor()
-    - todos的结构: [{title:'xx', isDone:false}, {}]
+    - todos的结构: `[{title:'xx', isDone:false}, {}]`
     - 通过标签属性向-->TodoMain-->TodoItem传递todos
   - 添加新的todo, 显示在列表首位
   - 勾选指定todo
@@ -90,36 +91,9 @@
   - 函数数据--->调用执行
   - 父子组件的通信
 
-
 ## 项目打包运行
 - 项目编译打包并运行
-  - npm build
-  - npm install -g pushstate-server
-  - pushstate-server build
-  - start http://localhost:9000
-- 配置sass预编译器环境2
-  - 使用工具包: create-react-app-sass
-  - npm install create-react-app-sass --save-dev
-  - 修改package.json
-    ```
-    "scripts": {
-      "start": "react-scripts-with-sass start",
-      "build": "react-scripts-with-sass build",
-      "test": "react-scripts test --env=jsdom",
-      "eject": "react-scripts eject"
-    },
-    ```
-  - 在js中引入样式文件时, 不引入*.scss文件, 而是引入*.css文件
-    - 原因: 在构建项目时, 会先将.scss文件转译为.css文件
-  - 编译打包运行
-
-- 实现组件间通信方式2: 
-  - 使用消息订阅(subscribe)-发布(publish)机制
-  - 工具库: PubSubJS
-  - 下载: npm install pubsub-js --save
-  - 使用: 
-    ```
-    import PubSub from 'pubsub-js' //引入
-    PubSub.subscribe('delete', function(data){ }); //订阅
-    PubSub.publish('delete', data) //发布消息
-    ```
+  - `npm build`
+  - `npm install -g serve`
+  - `serve -s build`
+  - 访问地址:`localhost:5000`

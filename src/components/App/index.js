@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import TodoHeader from '../TodoHeader'
 import TodoMain from '../TodoMain'
 import TodoFooter from '../TodoFooter'
-import './index.css'
+import './index.scss'
 
 
 class App extends Component {
