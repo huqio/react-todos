@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PubSub from 'pubsub-js'
 import TodoHeader from '../TodoHeader'
 import TodoMain from '../TodoMain'
 import TodoFooter from '../TodoFooter'
@@ -12,6 +13,13 @@ class App extends Component {
             todos: [{isDone: false, title: '吃饭'}, {isDone: false, title: '睡觉'}],
             isAllDone: false
         }
+    }
+
+    componentDidMount() {
+        // 订阅消息(删除todo)
+        PubSub.subscribe('delete', index => {
+            this.deleteTodo(index)
+        })
     }
 
     //添加todo
@@ -68,7 +76,6 @@ class App extends Component {
         const mainProps = {
             todos: this.state.todos,
             updataTodoChecked: this.updataTodoChecked,
-            deleteTodo: this.deleteTodo
         }
         const footerProps = {
             totalCount: this.state.todos.length,

@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import PubSub from 'pubsub-js'
 import './index.scss'
 
 class TodoItem extends Component {
     static propTypes = {
         updataTodoChecked: PropTypes.func.isRequired,
-        deleteTodo: PropTypes.func.isRequired,
         todo: PropTypes.object.isRequired,
         index: PropTypes.number.isRequired
     }
@@ -23,8 +23,11 @@ class TodoItem extends Component {
         this.refs.del.style.display = 'none'
     }
     deleteTodo = () => {
-        const {index, deleteTodo} = this.props
-        deleteTodo(index)
+        const {todo, index} = this.props
+        if(window.confirm(`确定删除${todo.title}吗`)) {
+            // 发布消息(删除todo)
+            PubSub.publish('delete', index)
+        }
     }
 
     render() {

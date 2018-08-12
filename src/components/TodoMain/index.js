@@ -6,8 +6,7 @@ import './index.scss'
 class TodoMain extends Component {
     static propTypes = {
         todos: PropTypes.array.isRequired,
-        updataTodoChecked: PropTypes.func.isRequired,
-        deleteTodo: PropTypes.func.isRequired
+        updataTodoChecked: PropTypes.func.isRequired
     }
 
     render() {
